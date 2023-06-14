@@ -6,28 +6,34 @@
 /*   By: jpes <jpes@student.42nice.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:09:57 by jpes              #+#    #+#             */
-/*   Updated: 2023/06/14 15:16:47 by jpes             ###   ########.fr       */
+/*   Updated: 2023/06/14 18:01:34 by jpes             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-void ft_alpha_count(char c)
+int ft_alpha_count(char c)
 {
    int   count;
 
    count = 0;
    if (c >= 'a' && c <= 'z')
    {
-      printf("ZZZZZ");
+      count = c - '0' - 48;
    }
-   
+   if (c >= 'A' && c <= 'Z')
+   {
+      count = c - '0' - 16;
+   }
+   //printf("%d\n", count);
+   return (count);
 }
 
 int main (int argc, char **argv)
 {
    int   i;
+   int   j;
 
    i = 0;
    if (argc != 2)
@@ -35,8 +41,12 @@ int main (int argc, char **argv)
    else
       while(argv[1][i])
       {
-         ft_alpha_count(argv[1][i]);
-         //printf("%d\n",ft_alpha_count(argv[1][i]));
+         j = 0;
+         while (j != ft_alpha_count(argv[1][i]))
+         {
+            write(1, &argv[1][i], 1);
+            j ++;
+         }
          i ++;
       }
 }
