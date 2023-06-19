@@ -1,54 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   camel_to_snake.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpes <jpes@student.42nice.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 14:09:57 by jpes              #+#    #+#             */
-/*   Updated: 2023/06/15 09:25:10 by jpes             ###   ########.fr       */
+/*   Created: 2023/06/15 16:16:47 by jpes              #+#    #+#             */
+/*   Updated: 2023/06/15 17:40:23 by jpes             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int ft_alpha_count(char c)
+int   main(int argc, char  **argv)
 {
-   int   count;
-
-   count = 0;
-   if (c >= 'a' && c <= 'z')
+   if (argc == 2)
    {
-      count = c - '0' - 48;
-   }
-   if (c >= 'A' && c <= 'Z')
-   {
-      count = c - '0' - 16;
-   }
-   //printf("%d\n", count);
-   return (count);
-}
-
-/*
-int main (int argc, char **argv)
-{
-   int   i;
-   int   j;
-
-   i = 0;
-   if (argc != 2)
-      write(1, "\n", 1);
-   else
+      int   i;
+      
+      i = 0;
       while(argv[1][i])
       {
-         j = 0;
-         while (j != ft_alpha_count(argv[1][i]))
+         char  c;
+         c = argv[1][i];
+         if (c >= 65 && c <= 90)
          {
-            write(1, &argv[1][i], 1);
-            j ++;
+            c += 32;
+            write(1, "_", 1);
          }
+         write(1, &c, 1);
          i ++;
       }
+   }
 }
-*/
